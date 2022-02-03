@@ -1,0 +1,436 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="../../static/patient/css/bootstrap.css" />
+    <link
+      rel="stylesheet"
+      href="{% static '../../static/patient/css/style.css' %}"
+    />
+    <link
+      rel="stylesheet"
+      href="../../static/patient/css/fontawesome/css/all.css"
+    />
+  </head>
+  <body>
+    <div>
+      <div class="my-5">
+        <div
+          style="background-color: rgb(11, 11, 46); height: 100px"
+          class="fixed-top"
+        >
+          <span class="text-start text-light display-2">AVANI</span>
+          <span class="btn-group float-end clearfix align-items-middle mt-5">
+            <a
+              href="{% url 'contact' %}"
+              class="me-5 float-start text-decoration-none text-light"
+              >Contact Us</a
+            >
+            <button
+              type="button"
+              class="btn btn-outline-light dropdown-toggle float-end"
+              data-bs-toggle="dropdown"
+              aria-expanded="false"
+            >
+              SignUp/LogIn
+            </button>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="#">LogIn as a Doctor</a></li>
+              <li><a class="dropdown-item" href="#">SignUp as a Doctor</a></li>
+              <li>
+                <a class="dropdown-item" href="{% url 'patientlogin' %}"
+                  >LogIn as a Patient</a
+                >
+              </li>
+              <li>
+                <a class="dropdown-item" href="{% url 'patientsignup' %}"
+                  >SignUp as a Patient</a
+                >
+              </li>
+            </ul>
+          </span>
+        </div>
+        <br />
+        <br />
+        {% if messages %} {% for message in messages %}
+        <div class="alert alert-{{message.tags}}">{{message}}</div>
+        {% endfor %} {% endif %}
+        <h1 class="text-center display-1 text-danger">A Big Title</h1>
+        {% if user.is_authenticated %}
+        <form action="" method="POST">
+          {% csrf_token %}
+          <div class="clearfix mx-auto w-50">
+            <div class="row">
+              <div class="input-group float-start col">
+                <input
+                  type="text"
+                  class="form-control"
+                  placeholder="&#x1f50d; Specialist"
+                  aria-label="Username"
+                  name="s"
+                  aria-describedby="addon-wrapping"
+                />
+              </div>
+
+              <div class="input-group float-end col">
+                <input
+                  type="text"
+                  class="form-control"
+                  placeholder="&#x1f50d; Insurance"
+                  aria-label="Username"
+                  name="i"
+                  aria-describedby="addon-wrapping"
+                />
+              </div>
+              <div class="input-group float-end col">
+                <button type="submit" class="btn btn-primary">
+                  <i class="fas fa-search"></i> Search
+                </button>
+              </div>
+            </div>
+          </div>
+        </form>
+        {% endif %}
+        <div class="my-1 text-danger fw-bold">About Us</div>
+        <div class="row my-1">
+          <div class="col-md-8">
+            {% if doctors %}
+
+            <form action="" method="POST">
+              {% csrf_token %} {% for doctor in doctors %}
+              <div class="row container">
+                <div class="col-md-6">
+                  <div class="row">
+                    <div class="col">
+                      <figure class="figure col d-inline float-end">
+                        <img
+                          src="../../static/patient/images/nurse.jpg"
+                          class="figure-img img-fluid rounded float-end"
+                          alt="Nurse"
+                          style="height: 100px; width: 80px"
+                        />
+                      </figure>
+                    </div>
+                    <div class="col float-start">
+                      <p class="float-start">{{doctor.name}}</p>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-md-3">{{doctor.consultation_fee}}</div>
+                <div class="col-md-3">
+                  <div class="row">
+                    <div class="col">
+                      <a
+                        type="submit"
+                        href="{% url 'booking' doctor.user.id %}"
+                        class="btn btn-primary"
+                        >Book Appointment</a
+                      >
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </form>
+            {% endfor %} {% else %}
+            <div>
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+              Quibusdam eveniet tenetur consequuntur odit doloremque, corrupti
+              tempora, nesciunt a sint alias voluptatem quis aspernatur placeat
+              rerum culpa cumque non nihil laborum autem totam? Non culpa sequi
+              aut. Magnam facilis nisi aliquam assumenda id illo suscipit soluta
+              nesciunt, explicabo, repellendus a enim sequi neque deserunt sit
+              eveniet. Ab sed perspiciatis minima laudantium cumque, distinctio
+              accusamus commodi quidem rerum illo architecto. Consequatur quae
+              quasi adipisci! Porro quod sit culpa quasi cupiditate rerum
+              doloribus in, doloremque omnis itaque ipsam veritatis architecto
+              voluptas qui temporibus quidem ipsum voluptates fuga illum
+              blanditiis debitis ea minima? Sunt.
+            </div>
+            {% endif %}
+
+            <div class="text-center text-dark fw-bold my-1">Some Text</div>
+            <div class="row my-1">
+              <figure class="figure col">
+                <img
+                  src="../../static/patient/images/1.jpg"
+                  class="figure-img img-fluid rounded h-50"
+                  alt="Nurse"
+                />
+                <figcaption class="figure-caption text-start">
+                  Some text
+                </figcaption>
+              </figure>
+              <figure class="figure col">
+                <img
+                  src="../../static/patient/images/2.jpg"
+                  class="figure-img img-fluid rounded h-50"
+                  alt="Nurse"
+                />
+                <figcaption class="figure-caption text-start">
+                  Some text
+                </figcaption>
+              </figure>
+              <figure class="figure col">
+                <img
+                  src="../../static/patient/images/3.jpg"
+                  class="figure-img img-fluid rounded h-50"
+                  alt="Nurse"
+                />
+                <figcaption class="figure-caption text-start">
+                  Some text
+                </figcaption>
+              </figure>
+            </div>
+            <div class="row">
+              <figure class="figure col">
+                <img
+                  src="../../static/patient/images/4.jpg"
+                  class="figure-img img-fluid rounded h-50"
+                  alt="Nurse"
+                />
+                <figcaption class="figure-caption text-start">
+                  Some text
+                </figcaption>
+              </figure>
+              <figure class="figure col">
+                <img
+                  src="../../static/patient/images/5.jpg"
+                  class="figure-img img-fluid rounded h-50"
+                  alt="Nurse"
+                />
+                <figcaption class="figure-caption text-start">
+                  Some text
+                </figcaption>
+              </figure>
+              <figure class="figure col">
+                <img
+                  src="../../static/patient/images/5.jpg"
+                  class="figure-img img-fluid rounded h-50"
+                  alt="Nurse"
+                />
+                <figcaption class="figure-caption text-start">
+                  Some text
+                </figcaption>
+              </figure>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <figure class="figure">
+              <img
+                src="../../static/patient/images/teamdoc.png"
+                class="figure-img img-fluid rounded h-25"
+                alt="Nurse"
+              />
+              <figcaption class="figure-caption text-center">
+                Some text
+              </figcaption>
+            </figure>
+          </div>
+        </div>
+        <div >
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Quam
+          aspernatur voluptatibus accusamus ipsum impedit odit nobis asperiores
+          molestiae libero quas quis voluptatum at, tempora nam iusto veniam
+          accusantium. Eos aspernatur autem sapiente cum quae ad, id optio ab
+          dolorum laboriosam cupiditate unde doloribus facilis officia voluptate
+          sequi qui eveniet. Blanditiis quis ea veritatis, voluptatum quia
+          doloribus voluptates quod, accusantium odio maxime facilis. Nostrum
+          totam, quos, repellat et molestiae tempore in dolores dolorem maiores
+          aperiam sapiente voluptatem ex. Dolor repudiandae sapiente amet
+          assumenda ab doloribus libero sunt dignissimos facere inventore,
+          veniam blanditiis maxime totam quaerat laudantium voluptatem
+          architecto nulla quasi eius!
+        </div>
+        <div class="row">
+          <div class="col-md-11">
+            <div class="row">
+              <div class="col-md-4 text-danger text-center fw-bold" style="margin-top:50px">
+                Affiliation
+              </div>
+              <div class="col-md-8">
+                <div class="row">
+                  <div class="col">
+                    <figure class="figure col">
+                      <img
+                        src="../../static/patient/images/9.jpg"
+                        class="figure-img img-fluid rounded h-25 w-25"
+                        alt="Nurse"
+                      />
+                      <figcaption class="figure-caption text-start">
+                        Specialists
+                      </figcaption>
+                    </figure>
+                  </div>
+                  <div class="col">
+                    <figure class="figure col">
+                      <img
+                        src="../../static/patient/images/10.jpg"
+                        class="figure-img img-fluid rounded h-25 w-25"
+                        alt="Nurse"
+                      />
+                      <figcaption class="figure-caption text-start">
+                        Specialists
+                      </figcaption>
+                    </figure>
+                  </div>
+                  <div class="col">
+                    <figure class="figure col">
+                      <img
+                        src="../../static/patient/images/11.jpg"
+                        class="figure-img img-fluid rounded h-25 w-25"
+                        alt="Nurse"
+                      />
+                      <figcaption class="figure-caption text-start">
+                        Specialists
+                      </figcaption>
+                    </figure>
+                  </div>
+                  <div class="col">
+                    <figure class="figure col">
+                      <img
+                        src="../../static/patient/images/12.jpg"
+                        class="figure-img img-fluid rounded h-25 w-25"
+                        alt="Nurse"
+                      />
+                      <figcaption class="figure-caption text-start">
+                        Specialists
+                      </figcaption>
+                    </figure>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col">
+                    <figure class="figure col">
+                      <img
+                        src="../../static/patient/images/13.jpg"
+                        class="figure-img img-fluid rounded h-25 w-25"
+                        alt="Nurse"
+                      />
+                      <figcaption class="figure-caption text-start">
+                        Specialists
+                      </figcaption>
+                    </figure>
+                  </div>
+                  <div class="col">
+                    <figure class="figure col">
+                      <img
+                        src="../../static/patient/images/14.jpg"
+                        class="figure-img img-fluid rounded h-25 w-25"
+                        alt="Nurse"
+                      />
+                      <figcaption class="figure-caption text-start">
+                        Specialists
+                      </figcaption>
+                    </figure>
+                  </div>
+                  <div class="col">
+                    <figure class="figure col">
+                      <img
+                        src="../../static/patient/images/15.jpg"
+                        class="figure-img img-fluid rounded h-25 w-25"
+                        alt="Nurse"
+                      />
+                      <figcaption class="figure-caption text-start">
+                        Specialists
+                      </figcaption>
+                    </figure>
+                  </div>
+                  <div class="col">
+                    <figure class="figure col">
+                      <img
+                        src="../../static/patient/images/16.jpg"
+                        class="figure-img img-fluid rounded h-25 w-25"
+                        alt="Nurse"
+                      />
+                      <figcaption class="figure-caption text-start">
+                        Specialists
+                      </figcaption>
+                    </figure>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-1"></div>
+        </div>
+        <hr />
+      </div>
+
+      <footer
+        class="text-center text-lg-start"
+        style="background-color: rgb(11, 11, 46)"
+      >
+        <!-- Grid container -->
+        <div class="p-4">
+          <!--Grid row-->
+          <div class="row">
+            <!--Grid column-->
+            <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+              <h5 class="text-uppercase text-light">Avani</h5>
+
+              <ul class="list-unstyled mb-0">
+                <li>
+                  <a class="text-light" href="{% url 'home' %}">Home</a>
+                </li>
+                <li>
+                  <a class="text-light" href="{% url 'contact' %}"
+                    >Contact Us</a
+                  >
+                </li>
+              </ul>
+            </div>
+            <!--Grid column-->
+
+            <!--Grid column-->
+            <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+              <h5 class="text-uppercase mb-0 text-light">Insurance</h5>
+
+              <ul class="list-unstyled">
+                <li>
+                  <a class="text-light" href="#!">Britam</a>
+                </li>
+                <li>
+                  <a class="text-light" href="#!">Britam</a>
+                </li>
+                <li>
+                  <a class="text-light" href="#!">Britam</a>
+                </li>
+                <li>
+                  <a class="text-light" href="#!">Britam</a>
+                </li>
+              </ul>
+            </div>
+            <!--Grid column-->
+
+            <!--Grid column-->
+            <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+              <h5 class="text-uppercase text-light">Specialists</h5>
+
+              <ul class="list-unstyled mb-0">
+                <li>
+                  <a class="text-light" href="#!">Dermatologist</a>
+                </li>
+                <li>
+                  <a class="text-light" href="#!">Orthodontist</a>
+                </li>
+                <li>
+                  <a class="text-light" href="#!">Neurosurgeon</a>
+                </li>
+              </ul>
+            </div>
+            <!--Grid column-->
+          </div>
+          <!--Grid row-->
+        </div>
+        <!-- Grid container -->
+      </footer>
+    </div>
+
+    <script src="../../static/patient/js/bootstrap.js"></script>
+  </body>
+</html>

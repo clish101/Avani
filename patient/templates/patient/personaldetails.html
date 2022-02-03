@@ -1,0 +1,277 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Document</title>
+  <link href="{% static '../../static/patient/css/style.css' %}" rel="stylesheet" />
+  <link rel="stylesheet" href="../../static/patient/css/bootstrap.css" />
+  <link rel="stylesheet" href="../../static/patient/css/fontawesome/css/all.css" />
+</head>
+
+<body style="background-color: #C48793">
+  <div class=" weirdbrown">
+    <div style="background-color:rgb(11, 11, 46);height: 100px;">
+      <span class="text-start  display-2"><a class="text-light text-decoration-none" href="{% url 'home' %}">AVANI</a></span>
+      <span class="btn-group float-end clearfix align-items-middle mt-5">
+        <a href="{% url 'contact' %}" class="me-5 text-light float-start">Contact Us</a>
+        <button type="button" class="btn btn-outline-light dropdown-toggle float-end" data-bs-toggle="dropdown"
+          aria-expanded="false">
+          SignUp/LogIn
+        </button>
+        <ul class="dropdown-menu">
+          <li><a class="dropdown-item" href="#">LogIn as a Doctor</a></li>
+          <li><a class="dropdown-item" href="#">SignUp as a Doctor</a></li>
+          <li><a class="dropdown-item" href="{% url 'patientlogin' %}">LogIn as a Patient</a></li>
+          <li><a class="dropdown-item" href="{% url 'patientsignup' %}">SignUp as a Patient</a></li>
+        </ul>
+      </span>
+    </div>
+
+    
+    <div style="margin: auto">
+      <div style="width: 90%; margin: auto" class="py-3">
+        <form>
+          <div class="row">
+            <div class="col">
+              <h5 style="color: red">Medical Information</h5>
+            </div>
+            <div class="col">
+              <input type="checkbox" placeholder="Last name" />
+              <label style="color: red" for="dateofbirth">Not Selected</label>
+            </div>
+            <div class="col">
+              <input type="checkbox" placeholder="Last name" />
+              <label style="color: red" for="dateofbirth">Not Selected</label>
+            </div>
+            <div class="col">
+              <input type="checkbox" placeholder="Last name" />
+              <label style="color: red" for="dateofbirth">Not Selected</label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col">
+              <h5></h5>
+            </div>
+            <div class="col">
+              <input checked type="checkbox" placeholder="Last name" />
+              <label style="color: red" for="dateofbirth">Not Selected</label>
+            </div>
+            <div class="col">
+              <input checked type="checkbox" placeholder="Last name" />
+              <label style="color: red" for="dateofbirth">Not Selected</label>
+            </div>
+            <div class="col">
+              <input checked type="checkbox" placeholder="Last name" />
+              <label style="color: red" for="dateofbirth">Not Selected</label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col">
+              <h5></h5>
+            </div>
+            <div class="col">
+              <input type="checkbox" placeholder="Last name" />
+              <label style="color: red" for="dateofbirth">Not Selected</label>
+            </div>
+            <div class="col">
+              <input type="checkbox" placeholder="Last name" />
+              <label style="color: red" for="dateofbirth">Not Selected</label>
+            </div>
+            <div class="col">
+              <input type="checkbox" placeholder="Last name" />
+              <label style="color: red" for="dateofbirth">Not Selected</label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col">
+              <h5></h5>
+            </div>
+            <div class="col">
+              <input disabled type="checkbox" placeholder="Last name" />
+              <label for="dateofbirth">Not Selected</label>
+            </div>
+            <div class="col">
+              <input disabled type="checkbox" placeholder="Last name" />
+              <label for="dateofbirth">Not Selected</label>
+            </div>
+            <div class="col">
+              <input disabled type="checkbox" placeholder="Last name" />
+              <label for="dateofbirth">Not Selected</label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col">
+              <h5></h5>
+            </div>
+            <div class="col">
+              <input disabled type="checkbox" placeholder="Last name" />
+              <label for="dateofbirth">Not Selected</label>
+            </div>
+            <div class="col">
+              <input disabled type="checkbox" placeholder="Last name" />
+              <label for="dateofbirth">Not Selected</label>
+            </div>
+            <div class="col">
+              <input disabled type="checkbox" placeholder="Last name" />
+              <label for="dateofbirth">Not Selected</label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col">
+              <h5></h5>
+            </div>
+            <div class="col">
+              <input disabled type="checkbox" placeholder="Last name" />
+              <label for="dateofbirth">Not Selected</label>
+            </div>
+            <div class="col">
+              <input disabled type="checkbox" placeholder="Last name" />
+              <label for="dateofbirth">Not Selected</label>
+            </div>
+            <div class="col">
+              <input disabled type="checkbox" placeholder="Last name" />
+              <label for="dateofbirth">Not Selected</label>
+            </div>
+          </div>
+          <div class="row mt-5">
+            <div class="col-md-3">
+              <h5 style="color:red">Additional Information</h5>
+            </div>
+            <div class="col-md-9">
+              <textarea name="" id="" cols="60" rows="4" value="This is it"></textarea>
+            </div>
+          </div>
+          <div class="row mt-5">
+            <div class="col-md-3 mt-4 mt-3">
+              <h5 style="color:red">Next of Kin</h5>
+            </div>
+            <div class="col-md-9">
+              <div class="row bg-light" style="height: 100px; border: solid;">
+                <div class="col">
+                  <label for="firstname">Name</label>
+                  <input type="text" class="form-control" placeholder="Name" />
+                </div>
+                <div class="col">
+                  <label for="firstname">Contact</label>
+                  <input type="text" class="form-control" placeholder="Phone" />
+                </div>
+                <div class="col">
+                  <label for="firstname">Address</label>
+                  <input type="text" class="form-control" placeholder="Address" />
+                </div>
+              </div>
+            </div>
+
+          </div>
+          <div class="row mt-5">
+            <div class="col-md-3 mt-4">
+              <h5 style="color:red">Insurance Cover</h5>
+            </div>
+            <div class="col-md-3">
+
+              <label for="firstname">Insurance</label>
+
+              <input type="text" class="form-control" placeholder="First name" />
+
+            </div>
+
+          </div>
+          <div class="row mt-5">
+            <div class="col-md-3 mt-4">
+              <h5 style="color:red">Member ID</h5>
+            </div>
+            <div class="col-md-3">
+
+              <label for="firstname">Member ID</label>
+
+              <input type="text" class="form-control" placeholder="First name" />
+
+            </div>
+
+          </div>
+      </div>
+      <div class="text-center mt-3 ">
+
+        <button class="btn btn-light fw-bold">Save</button>
+      </div>
+      </form>
+    </div>
+  </div>
+  
+
+  <footer class="text-center text-lg-start" style="background-color:rgb(11, 11, 46);">
+    <!-- Grid container -->
+    <div class=" p-4">
+      <!--Grid row-->
+      <div class="row">
+        <!--Grid column-->
+        <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+          <h5 class="text-uppercase text-light">Avani</h5>
+  
+          <ul class="list-unstyled mb-0">
+            <li>
+              <a class="text-light" href="{% url 'home' %}" >Home</a>
+            </li>
+            <li>
+              <a class="text-light" href="{% url 'contact' %}" >Contact Us</a>
+            </li>
+          </ul>
+        </div>
+        <!--Grid column-->
+  
+        <!--Grid column-->
+        <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+          <h5 class="text-uppercase mb-0 text-light">Insurance</h5>
+  
+          <ul class="list-unstyled">
+            <li>
+              <a class="text-light" href="#!">Britam</a>
+            </li>
+            <li>
+              <a class="text-light" href="#!">Britam</a>
+            </li>
+            <li>
+              <a class="text-light" href="#!">Britam</a>
+            </li>
+            <li>
+              <a class="text-light" href="#!">Britam</a>
+            </li>
+          </ul>
+        </div>
+        <!--Grid column-->
+  
+        <!--Grid column-->
+        <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+          <h5 class="text-uppercase text-light">Specialists</h5>
+  
+          <ul class="list-unstyled mb-0">
+            <li>
+              <a class="text-light" href="#!">Dermatologist</a>
+            </li>
+            <li>
+              <a class="text-light" href="#!">Orthodontist</a>
+            </li>
+            <li>
+              <a class="text-light" href="#!">Neurosurgeon</a>
+            </li>
+            
+          </ul>
+        </div>
+        <!--Grid column-->
+  
+        
+      </div>
+      <!--Grid row-->
+    </div>
+    <!-- Grid container -->
+  </footer>
+  </div>
+
+  <script src="../../static/patient/js/bootstrap.js"></script>
+</body>
+
+</html>

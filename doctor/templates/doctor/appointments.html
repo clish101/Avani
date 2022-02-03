@@ -1,0 +1,266 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link
+      href="{% static '../../static/patient/css/style.css' %}"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../../static/patient/css/bootstrap.css" />
+    <link
+      rel="stylesheet"
+      href="../../static/patient/css/fontawesome/css/all.css"
+    />
+  </head>
+  <body style="background-image: url('../../static/patient/images/forest.jpg')">
+    <div style="background-color: rgba(255, 255, 255, 0.7); height: 100%">
+      <div class="row" style="background-color: rgb(11, 11, 46); height: 100px">
+        <span class="text-start display-2 col-md-2 float-start"
+          ><a class="text-light text-decoration-none" href="{% url 'home' %}"
+            >AVANI</a
+          ></span
+        >
+
+        <span class="float-end mt-5 col-md-10 text-end">
+          <a
+            href="{% url 'contact' %}"
+            class="me-1 ps-2 text-decoration-none text-light"
+            >Home</a
+          >
+
+          <a
+            href="{% url 'contact' %}"
+            class="me-1 ps-2 text-decoration-none text-light"
+            style="border-left: solid 2px white"
+            >Pending Approvals</a
+          >
+
+          <a
+            href="{% url 'contact' %}"
+            class="me-1 ps-2 text-decoration-none text-light"
+            style="border-left: solid 2px white"
+            >Scheduled Appointments</a
+          >
+          <a
+            href="{% url 'contact' %}"
+            class="me-1 ps-2 text-decoration-none text-light"
+            style="border-left: solid 2px white"
+            >Review</a
+          >
+          <a
+            href="{% url 'contact' %}"
+            class="me-1 ps-2 text-decoration-none text-light"
+            style="border-left: solid 2px white"
+            >Feedback</a
+          >
+        </span>
+      </div>
+
+      <div class="row container my-3">
+        <div class="col-md-6 text-center fw-bold">Patient</div>
+
+        <div class="col-md-2 fw-bold">Appointment Date</div>
+        <div class="col-md-1 fw-bold">Attachments</div>
+        <div class="col-md-1 fw-bold"></div>
+        <div class="col-md-1 fw-bold"></div>
+        <div class="col-md-1 fw-bold"></div>
+      </div>
+      <div class="my-3">
+        
+
+        <form action="" method="post">
+        {% csrf_token %} {% for opinion in opinions %}
+          <div class="row container">
+            <div class="col-md-6">
+              <div class="row">
+                <div class="col">
+                  <figure class="figure col d-inline float-end">
+                    <img
+                      src="../../static/patient/images/nurse.jpg"
+                      class="figure-img img-fluid rounded float-end"
+                      alt="Nurse"
+                      style="height: 100px; width: 80px"
+                    />
+                  </figure>
+                </div>
+                <div class="col float-start">
+                  <p class="float-start">
+                    {{opinion.patient_app_second}}
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-md-2">
+              <div class="input-group mb-3">
+                {{opinion.app_date_second}}
+              </div>
+            </div>
+
+            <div class="col-md-1">
+              <a href="{% url 'download' opinion.pk %}">Download</a>
+            </div>
+            {% if opinion.seen_second %}
+            <div class="col-md-1">
+              <i class="fas fa-check-square mr-2 bg-white"></i>
+
+              <a href="{% url 'seensecond' opinion.pk %}" class="btn btn-primary">Seen</a>
+            </div>
+            {% else %}
+            <div class="col-md-1">
+              <i class="far fa-square mr-2 bg-white"></i>
+
+              <a href="{% url 'seensecond' opinion.pk %}" class="btn btn-primary">Seen</a>
+            </div>
+            {% endif %}
+            {% if opinion.accepted_second %}
+            <div class="col-md-1">
+              <i class="fas fa-check-square mr-2 bg-white"></i>
+
+              <a href="{% url 'accepted' opinion.pk %}" class="btn btn-primary">Accept</a>
+            </div>
+            {% else %}
+            <div class="col-md-1">
+              <i class="far fa-square mr-2 bg-white"></i>
+
+              <a href="{% url 'accepted' opinion.pk %}" class="btn btn-primary">Accept</a>
+            </div>
+            {% endif %}
+            {% if opinion.cancelled_second %}
+            <div class="col-md-1">
+              <i class="fas fa-check-square mr-2 bg-white"></i>
+
+              <a href="{% url 'cancelled' opinion.pk %}" class="btn btn-primary">Cancelled</a>
+            </div>
+            {% else %}
+            <div class="col-md-1">
+              <i class="far fa-square mr-2 bg-white"></i>
+
+              <a href="{% url 'cancelled' opinion.pk %}" class="btn btn-primary">Cancelled</a>
+            </div>
+            {% endif %}
+            
+          </div>
+          {% endfor %}
+        </form>
+        <form action="" method="POST">
+          {% csrf_token %} {% for app in appointments %}
+          <div class="row container">
+            <div class="col-md-6">
+              <div class="row">
+                <div class="col">
+                  <figure class="figure col d-inline float-end">
+                    <img
+                      src="../../static/patient/images/nurse.jpg"
+                      class="figure-img img-fluid rounded float-end"
+                      alt="Nurse"
+                      style="height: 100px; width: 80px"
+                    />
+                  </figure>
+                </div>
+                <div class="col float-start">
+                  <p class="float-start">{{app.patient_app.first_name}}</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-md-2">
+              <div class="input-group mb-3">{{app.app_date}}</div>
+            </div>
+
+            <div class="col-md-1"></div>
+            {% if app.seen %}
+            <div class="col-md-1">
+              <i class="fas fa-check-square mr-2 bg-white"></i>
+
+              <a href="{% url 'seen' app.pk %}" class="btn btn-primary">Seen</a>
+            </div>
+            {% else %}
+            <div class="col-md-1">
+              <i class="far fa-square mr-2 bg-white"></i>
+
+              <a href="{% url 'seen' app.pk %}" class="btn btn-primary">Seen</a>
+            </div>
+            {% endif %}
+          </div>
+          {% endfor %}
+        </form>
+      </div>
+
+      <footer
+        class="text-center text-lg-start"
+        style="background-color: rgb(11, 11, 46)"
+      >
+        <!-- Grid container -->
+        <div class="p-4">
+          <!--Grid row-->
+          <div class="row">
+            <!--Grid column-->
+            <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+              <h5 class="text-uppercase text-light">Avani</h5>
+
+              <ul class="list-unstyled mb-0">
+                <li>
+                  <a class="text-light" href="{% url 'home' %}">Home</a>
+                </li>
+                <li>
+                  <a class="text-light" href="{% url 'contact' %}"
+                    >Contact Us</a
+                  >
+                </li>
+              </ul>
+            </div>
+            <!--Grid column-->
+
+            <!--Grid column-->
+            <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+              <h5 class="text-uppercase mb-0 text-light">Insurance</h5>
+
+              <ul class="list-unstyled">
+                <li>
+                  <a class="text-light" href="#!">Britam</a>
+                </li>
+                <li>
+                  <a class="text-light" href="#!">Britam</a>
+                </li>
+                <li>
+                  <a class="text-light" href="#!">Britam</a>
+                </li>
+                <li>
+                  <a class="text-light" href="#!">Britam</a>
+                </li>
+              </ul>
+            </div>
+            <!--Grid column-->
+
+            <!--Grid column-->
+            <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+              <h5 class="text-uppercase text-light">Specialists</h5>
+
+              <ul class="list-unstyled mb-0">
+                <li>
+                  <a class="text-light" href="#!">Dermatologist</a>
+                </li>
+                <li>
+                  <a class="text-light" href="#!">Orthodontist</a>
+                </li>
+                <li>
+                  <a class="text-light" href="#!">Neurosurgeon</a>
+                </li>
+              </ul>
+            </div>
+            <!--Grid column-->
+          </div>
+          <!--Grid row-->
+        </div>
+        <!-- Grid container -->
+      </footer>
+    </div>
+
+    <script src="../../static/patient/js/bootstrap.js"></script>
+  </body>
+</html>

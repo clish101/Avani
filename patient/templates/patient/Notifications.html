@@ -1,0 +1,319 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link
+      href="{% static '../../static/patient/css/style.css' %}"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../../static/patient/css/bootstrap.css" />
+    <link
+      rel="stylesheet"
+      href="../../static/patient/css/fontawesome/css/all.css"
+    />
+  </head>
+  <body >
+    <div style="background-color: rgba(255, 255, 255, 0.7); height: 100%">
+      <div class="row" style="background-color: rgb(11, 11, 46); height: 100px">
+        <span class="text-start display-2 col-md-2 float-start"
+          ><a class="text-light text-decoration-none" href="{% url 'home' %}"
+            >AVANI</a
+          ></span
+        >
+
+        <span class="float-end mt-5 col-md-10 text-end">
+          <a
+            href="{% url 'contact' %}"
+            class="me-1 ps-2 text-decoration-none text-light"
+            >Home</a
+          >
+          <a
+            href="{% url 'contact' %}"
+            class="me-1 ps-2 text-decoration-none text-light"
+            style="border-left: solid 2px white"
+            >Consultation Request</a
+          >
+          <a
+            href="{% url 'contact' %}"
+            class="me-1 ps-2 text-decoration-none text-light"
+            style="border-left: solid 2px white"
+            >Appointment Booking</a
+          >
+          <a
+            href="{% url 'contact' %}"
+            class="me-1 ps-2 text-decoration-none text-light"
+            style="border-left: solid 2px white"
+            >Appointment Feedback</a
+          >
+          <a
+            href="{% url 'contact' %}"
+            class="me-1 ps-2 text-decoration-none text-light"
+            style="border-left: solid 2px white"
+            >Notification</a
+          >
+          <a
+            href="{% url 'contact' %}"
+            class="me-1 ps-2 text-decoration-none text-light"
+            style="border-left: solid 2px white"
+            >History</a
+          >
+        </span>
+      </div>
+
+      <div style="width: 75%; margin: auto; margin-top: 20px"></div>
+
+      <div class="row">
+        <p class="ms-2 fw-bold">Upcoming Appointments</p>
+        <div class="col">
+          <div class="row">
+            <div class="col ms-2 fw-bold">Doctor</div>
+            <div class="col fw-bold">Appointment Date</div>
+            <div class="col"></div>
+          </div>
+        </div>
+        <div class="col"></div>
+      </div>
+{% for upapp in upcoming_appointments_second %}
+      <div class="row">
+        <div class="col">
+          <div class="row">
+            <div class="col">
+              <div class="row">
+                <div class="col">
+                  <figure class="figure col d-inline float-end">
+                    <img
+                      src="../../static/patient/images/nurse.jpg"
+                      class="figure-img img-fluid rounded float-end"
+                      alt="Nurse"
+                      style="height: 100px; width: 80px"
+                    />
+                  </figure>
+                </div>
+                <div class="col float-start">
+                  <p class="float-start">{{upapp.doctor_app.name}}</p>
+                </div>
+              </div>
+            </div>
+            <div class="col">
+              <div class="input-group mb-3">
+                {{upapp.app_date}}
+              </div>
+            </div>
+            <div class="col">
+              <a type="submit" href="{% url 'deleteapp' upapp.id %}" class="btn btn-primary">Cancel</a>
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          {{upapp.doctor_app.consultation_fee}} shillings has been deducted from your insurance for booking
+        </div>
+      </div>
+      {% endfor %}
+{% for upapp in upcoming_appointments %}
+      <div class="row">
+        <div class="col">
+          <div class="row">
+            <div class="col">
+              <div class="row">
+                <div class="col">
+                  <figure class="figure col d-inline float-end">
+                    <img
+                      src="../../static/patient/images/nurse.jpg"
+                      class="figure-img img-fluid rounded float-end"
+                      alt="Nurse"
+                      style="height: 100px; width: 80px"
+                    />
+                  </figure>
+                </div>
+                <div class="col float-start">
+                  <p class="float-start">{{upapp.doctor_app.name}}</p>
+                </div>
+              </div>
+            </div>
+            <div class="col">
+              <div class="input-group mb-3">
+                {{upapp.app_date}}
+              </div>
+            </div>
+            <div class="col">
+              <a type="submit" href="{% url 'deleteapp' upapp.id %}" class="btn btn-primary">Cancel</a>
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          {{upapp.doctor_app.consultation_fee}} shillings has been deducted from your insurance for booking
+        </div>
+      </div>
+      {% endfor %}
+
+      
+<hr>
+<p class="ms-2 fw-bold">Pending Appointments</p>
+{% for peapp in pending_appointments %}
+      <div class="row">
+        <div class="col">
+          <div class="row">
+            <div class="col">
+              <div class="row">
+                <div class="col">
+                  <figure class="figure col d-inline float-end">
+                    <img
+                      src="../../static/patient/images/nurse.jpg"
+                      class="figure-img img-fluid rounded float-end"
+                      alt="Nurse"
+                      style="height: 100px; width: 80px"
+                    />
+                  </figure>
+                </div>
+                <div class="col float-start">
+                  <p class="float-start">{{peapp.doctor_app_second.name}}</p>
+                </div>
+              </div>
+            </div>
+            <div class="col">
+              <div class="input-group mb-3">
+                {{peapp.app_date_second}}
+              </div>
+            </div>
+            <div class="col">
+              <a type="submit" href="{% url 'deleteseco' peapp.id %}" class="btn btn-primary">Cancel</a>
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          
+        </div>
+      </div>
+      {% endfor %}
+<hr>
+<div class="row">
+  <p class="ms-2 fw-bold">Cancelled Appointments</p>
+  <div class="col">
+    <div class="row">
+      <div class="col ms-2 fw-bold">Doctor</div>
+      <div class="col fw-bold">Appointment Date</div>
+      <div class="col"></div>
+    </div>
+  </div>
+  <div class="col"></div>
+</div>
+
+
+
+{% for caapp in cancelled_appointments %}
+      <div class="row">
+        <div class="col">
+          <div class="row">
+            <div class="col">
+              <div class="row">
+                <div class="col">
+                  <figure class="figure col d-inline float-end">
+                    <img
+                      src="../../static/patient/images/nurse.jpg"
+                      class="figure-img img-fluid rounded float-end"
+                      alt="Nurse"
+                      style="height: 100px; width: 80px"
+                    />
+                  </figure>
+                </div>
+                <div class="col float-start">
+                  <p class="float-start">{{caapp.doctor_app_second.name}}</p>
+                </div>
+              </div>
+            </div>
+            <div class="col">
+              <div class="input-group mb-3">
+                {{caapp.app_date_second}}
+              </div>
+            </div>
+            <div class="col">
+              
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          
+        </div>
+      </div>
+      {% endfor %}
+
+      <br />
+      <br />
+
+      <footer
+        class="text-center text-lg-start"
+        style="background-color: rgb(11, 11, 46)"
+      >
+        <!-- Grid container -->
+        <div class="p-4">
+          <!--Grid row-->
+          <div class="row">
+            <!--Grid column-->
+            <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+              <h5 class="text-uppercase text-light">Avani</h5>
+
+              <ul class="list-unstyled mb-0">
+                <li>
+                  <a class="text-light" href="{% url 'home' %}">Home</a>
+                </li>
+                <li>
+                  <a class="text-light" href="{% url 'contact' %}"
+                    >Contact Us</a
+                  >
+                </li>
+              </ul>
+            </div>
+            <!--Grid column-->
+
+            <!--Grid column-->
+            <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+              <h5 class="text-uppercase mb-0 text-light">Insurance</h5>
+
+              <ul class="list-unstyled">
+                <li>
+                  <a class="text-light" href="#!">Britam</a>
+                </li>
+                <li>
+                  <a class="text-light" href="#!">Britam</a>
+                </li>
+                <li>
+                  <a class="text-light" href="#!">Britam</a>
+                </li>
+                <li>
+                  <a class="text-light" href="#!">Britam</a>
+                </li>
+              </ul>
+            </div>
+            <!--Grid column-->
+
+            <!--Grid column-->
+            <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+              <h5 class="text-uppercase text-light">Specialists</h5>
+
+              <ul class="list-unstyled mb-0">
+                <li>
+                  <a class="text-light" href="#!">Dermatologist</a>
+                </li>
+                <li>
+                  <a class="text-light" href="#!">Orthodontist</a>
+                </li>
+                <li>
+                  <a class="text-light" href="#!">Neurosurgeon</a>
+                </li>
+              </ul>
+            </div>
+            <!--Grid column-->
+          </div>
+          <!--Grid row-->
+        </div>
+        <!-- Grid container -->
+      </footer>
+    </div>
+
+    <script src="../../static/patient/js/bootstrap.js"></script>
+  </body>
+</html>

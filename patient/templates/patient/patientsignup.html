@@ -1,0 +1,201 @@
+{% load static %}
+{% load crispy_forms_tags %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link
+      href="{% static '../../static/patient/css/style.css' %}"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../../static/patient/css/bootstrap.css" />
+    <link
+      rel="stylesheet"
+      href="../../static/patient/css/fontawesome/css/all.css"
+    />
+  </head>
+  <body >
+    <div style="background-color: rgba(255,255,255,0.7);">
+      <div style="background-color:rgb(11, 11, 46);height: 100px;">
+
+        <span class="text-start  display-2"><a class=" text-decoration-none text-light" href="{% url 'home' %}">AVANI</a></span>
+        <span class="btn-group float-end clearfix align-items-middle mt-5">
+          <a href="{% url 'contact' %}" class="me-5 float-start text-light text-decoration-none">Contact Us</a>
+        </span>
+      </div>
+
+      
+      <div
+        style="
+          background-color: #C48793;
+          height: 70%;
+          width: 60%;
+          margin: auto;
+        " class="my-3 rounded"
+      >
+        <div style="width: 70%; margin: auto" class="py-3">
+          <form method="POST">
+            {% csrf_token %}
+            {{form|crispy}}
+            <!-- <div class="row">
+              
+              <label for="firstname">Name</label>
+              <div class="col">
+                
+                <input
+                  type="text"
+                  class="form-control"
+                  placeholder="First name"
+                />
+              </div>
+              <div class="col">
+                <input
+                  type="text"
+                  class="form-control"
+                  placeholder="Last name"
+                />
+              </div>
+            </div>
+            <br />
+            <label for="dateofbirth">Date of Birth</label>
+            <div class="col">
+              <input
+                type="date"
+                class="form-control"
+                placeholder="First name"
+                id="dateofbirth"
+              />
+            </div>
+            <br />
+            <div>
+              <label for="gender">Gender</label>
+            </div>
+            <input type="radio" id="html" name="gender" value="HTML" />
+
+            <label for="male">Male</label><br />
+            <input type="radio" id="css" name="gender" value="CSS" />
+            <label for="female">Female</label><br />
+            <input
+              type="radio"
+              id="javascript"
+              na
+            />
+            <label for="javascript">Other</label>
+            <div>
+              <label for="phone">Phone</label>
+              <br />
+              <input
+                type="number"
+                id="phone"
+                name="gender"
+                placeholder="Phone"
+                class="form-control"
+              />
+            </div>
+            <br />
+            <div>
+              <label for="email">Email</label>
+              <br />
+              <input
+                type="email"
+                id="email"
+                name="gender"
+                placeholder="email"
+                class="form-control"
+              />
+            </div>
+            <br />
+            <div>
+              <label for="password">Password</label>
+              <br />
+              <input
+                type="password"
+                id="password"
+                name="gender"
+                placeholder="password"
+                class="form-control"
+              />
+            </div> -->
+            <div class="text-center mt-3">
+
+              <button class="btn btn-dark" type="submit">Next</button>
+            </div>
+          </form>
+        </div>
+      </div>
+      
+
+      <footer class="text-center text-lg-start" style="background-color:rgb(11, 11, 46);">
+        <!-- Grid container -->
+        <div class=" p-4">
+          <!--Grid row-->
+          <div class="row">
+            <!--Grid column-->
+            <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+              <h5 class="text-uppercase text-light">Avani</h5>
+      
+              <ul class="list-unstyled mb-0">
+                <li>
+                  <a class="text-light" href="{% url 'home' %}" >Home</a>
+                </li>
+                <li>
+                  <a class="text-light" href="{% url 'contact' %}" >Contact Us</a>
+                </li>
+              </ul>
+            </div>
+            <!--Grid column-->
+      
+            <!--Grid column-->
+            <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+              <h5 class="text-uppercase mb-0 text-light">Insurance</h5>
+      
+              <ul class="list-unstyled">
+                <li>
+                  <a class="text-light" href="#!">Britam</a>
+                </li>
+                <li>
+                  <a class="text-light" href="#!">Britam</a>
+                </li>
+                <li>
+                  <a class="text-light" href="#!">Britam</a>
+                </li>
+                <li>
+                  <a class="text-light" href="#!">Britam</a>
+                </li>
+              </ul>
+            </div>
+            <!--Grid column-->
+      
+            <!--Grid column-->
+            <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+              <h5 class="text-uppercase text-light">Specialists</h5>
+      
+              <ul class="list-unstyled mb-0">
+                <li>
+                  <a class="text-light" href="#!">Dermatologist</a>
+                </li>
+                <li>
+                  <a class="text-light" href="#!">Orthodontist</a>
+                </li>
+                <li>
+                  <a class="text-light" href="#!">Neurosurgeon</a>
+                </li>
+                
+              </ul>
+            </div>
+            <!--Grid column-->
+      
+            
+          </div>
+          <!--Grid row-->
+        </div>
+        <!-- Grid container -->
+      </footer>
+    </div>
+
+    <script src="../../static/patient/js/bootstrap.js"></script>
+  </body>
+</html>

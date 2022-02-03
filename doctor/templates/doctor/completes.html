@@ -1,0 +1,334 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link
+      href="{% static '../../static/patient/css/style.css' %}"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../../static/patient/css/bootstrap.css" />
+    <link
+      rel="stylesheet"
+      href="../../static/patient/css/fontawesome/css/all.css"
+    />
+  </head>
+  <body style="background-image:url('../../static/patient/images/forest.jpg')">
+    <div style="background-color: rgba(255,255,255,0.7);height: 100%;">
+      <div class="row" style="background-color:rgb(11, 11, 46);height: 100px;">
+        <span class="text-start display-2 col-md-2 float-start"
+          ><a class="text-light text-decoration-none" href="{% url 'home' %}"
+            >AVANI</a
+          ></span
+        >
+
+        <span class="float-end mt-5 col-md-10 text-end">
+          <a href="{% url 'contact' %}" class="me-1 ps-2 text-decoration-none text-light">Home</a>
+          <a
+            href="{% url 'contact' %}"
+            class="me-1 ps-2 text-decoration-none text-light"
+            style="border-left: solid 2px white"
+            >Consultation Request</a
+          >
+          <a
+            href="{% url 'contact' %}"
+            class="me-1 ps-2 text-decoration-none text-light"
+            style="border-left: solid 2px white"
+            >Appointment Booking</a
+          >
+          <a
+            href="{% url 'contact' %}"
+            class="me-1 ps-2 text-decoration-none text-light"
+            style="border-left: solid 2px white"
+            >Appointment Feedback</a
+          >
+          <a
+            href="{% url 'contact' %}"
+            class="me-1 ps-2 text-decoration-none text-light"
+            style="border-left: solid 2px white"
+            >Notification</a
+          >
+          <a
+            href="{% url 'contact' %}"
+            class="me-1 ps-2 text-decoration-none text-light"
+            style="border-left: solid 2px white"
+            >History</a
+          >
+        </span>
+      </div>
+
+      
+      <div  style=" width: 75%; margin: auto;margin-top:20px">
+        
+        
+      <form action="" method="POST">
+          {% csrf_token %}
+          <div class="clearfix mx-auto w-50">
+            <div class="row">
+              <div class="input-group float-start col">
+                <input
+                  type="text"
+                  class="form-control"
+                  placeholder="&#x1f50d; Specialist"
+                  aria-label="Specialist"
+                  name='s'
+                  aria-describedby="addon-wrapping"
+                />
+              </div>
+
+              <div class="input-group float-end col">
+                <input
+                  type="text"
+                  class="form-control"
+                  placeholder="&#x1f50d; Insurance"
+                  aria-label="Insurance"
+                  name='i'
+                  aria-describedby="addon-wrapping"
+                />
+              </div>
+              <div class="input-group float-end col">
+                <button type="submit" class="btn btn-primary">
+                  <i class="fas fa-search"></i> Search
+                </button>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+
+      <div class="row  my-3">
+        <div class="col-md-3 text-center fw-bold">Doctor</div>
+        
+        <div class="col-md-2 fw-bold">Appointment Date</div>
+        <div class="col-md-3 fw-bold text-start">Review</div>
+        <div class="col-md-2 fw-bold ">Rating</div>
+        <div class="col-md-2 fw-bold"></div>
+      </div>
+      {% for regular in complete_regulars %}
+      <form class="my-3">
+          <div class="row ">
+            <div class="col-md-3 ">
+              <div class="row">
+                <div class="col">
+    
+                  
+                  <figure class="figure col d-inline float-end">
+                    <img
+                      src="../../static/patient/images/nurse.jpg"
+                      class="figure-img img-fluid rounded float-end"
+                      alt="Nurse"
+                      style="height: 100px;width: 80px;"
+                    />
+                  </figure>
+                </div>
+                <div class="col float-start">
+                  <p class="float-start me-2">
+                    {{regular.appointment.doctor_app.name}}
+                  </p>
+                  <p>
+                      {{regular.appointment.doctor_app.speciality}}
+                  </p>
+                  <p>
+                      {{regular.appointment.doctor_app.education}}
+                  </p>
+                </div>
+              </div>
+            </div>
+            
+
+              <div class="col-md-2">
+              <div class="input-group mb-3">
+                  {{regular.appointment.app_date}}
+                 
+                </div>
+              </div>
+              <div class="col-md-2">
+                <div class="form-group text-start">
+      
+      {{regular.review}}
+    </div>
+              </div>
+              {% if regular.rate == '1' %}
+              <div class="col-md-3 text-center">
+                <i class="fa fa-star text-primary"></i> <i class="fa fa-star "></i><i class="fa fa-star "></i><i class="fa fa-star "></i><i class="fa fa-star "></i>
+              </div>
+              {% elif regular.rate == '2' %}
+              <div class="col-md-3 text-center">
+                <i class="fa fa-star text-primary"></i> <i class="fa fa-star text-primary"></i><i class="fa fa-star "></i><i class="fa fa-star "></i><i class="fa fa-star "></i>
+              </div>
+              {% elif regular.rate == '3' %}
+              <div class="col-md-3 text-center">
+                <i class="fa fa-star text-primary"></i> <i class="fa fa-star text-primary"></i><i class="fa fa-star text-primary"></i><i class="fa fa-star "></i><i class="fa fa-star "></i>
+              </div>
+              {% elif regular.rate == '4' %}
+              <div class="col-md-3 text-center">
+                <i class="fa fa-star text-primary"></i> <i class="fa fa-star text-primary"></i><i class="fa fa-star text-primary"></i><i class="fa fa-star text-primary"></i><i class="fa fa-star "></i>
+              </div>
+              {% elif regular.rate == '5' %}
+              <div class="col-md-3 text-center">
+                <i class="fa fa-star text-primary"></i> <i class="fa fa-star text-primary"></i><i class="fa fa-star text-primary"></i><i class="fa fa-star text-primary"></i><i class="fa fa-star text-primary"></i>
+              </div>
+              {%else%}
+              {{regular.rate}}
+              {% endif %}
+                   </div>
+            
+           
+            
+          </form>
+          {% endfor %}
+            
+          {% for second in complete_seconds %}
+      <form class="my-3">
+          <div class="row ">
+            <div class="col-md-3 ">
+              <div class="row">
+                <div class="col">
+    
+                  
+                  <figure class="figure col d-inline float-end">
+                    <img
+                      src="../../static/patient/images/nurse.jpg"
+                      class="figure-img img-fluid rounded float-end"
+                      alt="Nurse"
+                      style="height: 100px;width: 80px;"
+                    />
+                  </figure>
+                </div>
+                <div class="col float-start">
+                  <p class="float-start me-2">
+                    {{second.appointment_second.doctor_app_second.name}}
+                  </p>
+                  <p>
+                    {{second.appointment_second.doctor_app_second.speciality}}
+                  </p>
+                  <p>
+                    {{second.appointment_second.doctor_app_second.education}}
+                </p>
+                </div>
+              </div>
+            </div>
+            
+
+              <div class="col-md-2">
+              <div class="input-group mb-3">
+                  {{second.appointment_second.app_date_second}}
+                 
+                </div>
+              </div>
+              <div class="col-md-2">
+                <div class="form-group text-start">
+      
+      {{second.review_second}}
+    </div>
+              </div>
+              {% if second.rate_second == '1' %}
+              <div class="col-md-3 text-center">
+                <i class="fa fa-star text-primary"></i> <i class="fa fa-star "></i><i class="fa fa-star "></i><i class="fa fa-star "></i><i class="fa fa-star "></i>
+              </div>
+              {% elif second.rate_second == '2' %}
+              <div class="col-md-3 text-center">
+                <i class="fa fa-star text-primary"></i> <i class="fa fa-star text-primary"></i><i class="fa fa-star "></i><i class="fa fa-star "></i><i class="fa fa-star "></i>
+              </div>
+              {% elif second.rate_second == '3' %}
+              <div class="col-md-3 text-center">
+                <i class="fa fa-star text-primary"></i> <i class="fa fa-star text-primary"></i><i class="fa fa-star text-primary"></i><i class="fa fa-star "></i><i class="fa fa-star "></i>
+              </div>
+              {% elif second.rate_second == '4' %}
+              <div class="col-md-3 text-center">
+                <i class="fa fa-star text-primary"></i> <i class="fa fa-star text-primary"></i><i class="fa fa-star text-primary"></i><i class="fa fa-star text-primary"></i><i class="fa fa-star "></i>
+              </div>
+              {% elif second.rate_second == '5' %}
+              <div class="col-md-3 text-center">
+                <i class="fa fa-star text-primary"></i> <i class="fa fa-star text-primary"></i><i class="fa fa-star text-primary"></i><i class="fa fa-star text-primary"></i><i class="fa fa-star text-primary"></i>
+              </div>
+              {%else%}
+              {{second.rate_second}}
+              {% endif %}
+                   </div>
+            
+           
+            
+          </form>
+          {% endfor %}
+            
+            
+      
+  <br>
+  <br>
+      
+
+      <footer class="text-center text-lg-start " style="background-color:rgb(11, 11, 46);">
+        <!-- Grid container -->
+        <div class=" p-4">
+          <!--Grid row-->
+          <div class="row">
+            <!--Grid column-->
+            <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+              <h5 class="text-uppercase text-light">Avani</h5>
+      
+              <ul class="list-unstyled mb-0">
+                <li>
+                  <a class="text-light" href="{% url 'home' %}" >Home</a>
+                </li>
+                <li>
+                  <a class="text-light" href="{% url 'contact' %}" >Contact Us</a>
+                </li>
+              </ul>
+            </div>
+            <!--Grid column-->
+      
+            <!--Grid column-->
+            <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+              <h5 class="text-uppercase mb-0 text-light">Insurance</h5>
+      
+              <ul class="list-unstyled">
+                <li>
+                  <a class="text-light" href="#!">Britam</a>
+                </li>
+                <li>
+                  <a class="text-light" href="#!">Britam</a>
+                </li>
+                <li>
+                  <a class="text-light" href="#!">Britam</a>
+                </li>
+                <li>
+                  <a class="text-light" href="#!">Britam</a>
+                </li>
+              </ul>
+            </div>
+            <!--Grid column-->
+      
+            <!--Grid column-->
+            <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+              <h5 class="text-uppercase text-light">Specialists</h5>
+      
+              <ul class="list-unstyled mb-0">
+                <li>
+                  <a class="text-light" href="#!">Dermatologist</a>
+                </li>
+                <li>
+                  <a class="text-light" href="#!">Orthodontist</a>
+                </li>
+                <li>
+                  <a class="text-light" href="#!">Neurosurgeon</a>
+                </li>
+                
+              </ul>
+            </div>
+            <!--Grid column-->
+      
+            
+          </div>
+          <!--Grid row-->
+        </div>
+        <!-- Grid container -->
+      </footer>
+    </div>
+
+    <script src="../../static/patient/js/bootstrap.js"></script>
+  </body>
+</html>

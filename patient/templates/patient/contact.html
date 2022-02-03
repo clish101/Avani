@@ -1,0 +1,147 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="../../static/patient/css/bootstrap.css" />
+    <link
+      rel="stylesheet"
+      href="{% static '../../static/patient/css/style.css' %}"
+    />
+    <link
+      rel="stylesheet"
+      href="../../static/patient/css/fontawesome/css/all.css"
+    />
+  </head>
+  <body>
+    <div class="">
+      <div style="background-color:rgb(11, 11, 46);">
+
+        <span class="text-start  display-2" ><a class="text-light text-decoration-none" href="{% url 'home' %}">AVANI</a></span>
+        <span class="btn-group float-end clearfix align-items-middle mt-5">
+          
+          <button
+            type="button"
+            class="btn btn-outline-light dropdown-toggle float-end"
+            data-bs-toggle="dropdown"
+            aria-expanded="false"
+          >
+            SignUp/LogIn
+          </button>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="#">LogIn as a Doctor</a></li>
+            <li><a class="dropdown-item" href="#">SignUp as a Doctor</a></li>
+            <li><a class="dropdown-item" href="{% url 'patientlogin' %}">LogIn as a Patient</a></li>
+            <li><a class="dropdown-item" href="{% url 'patientsignup' %}">SignUp as a Patient</a></li>
+          </ul>
+        </span>
+   
+      </div>
+      
+      
+      <div class="row">
+        <div class="col">
+         <div class="display-5 text-danger">Address</div>
+         <br> 
+         <p>This is the first address</p>
+         <p>This is the second address</p>
+         <p>This is the third address</p>
+         <p>This is the fourth address</p>
+         <p>This is the fifth address</p>
+        </div>
+        <div class="col">
+          <div class="display-5 text-danger">Address</div>
+          <br> 
+         <p>This is the first address</p>
+         <p>This is the second address</p>
+         <p>This is the third address</p>
+         <p>This is the fourth address</p>
+         <p>This is the fifth address</p>
+        </div>
+        <div class="col">
+          <div class="display-5 text-danger">Address</div>
+          <br> 
+         <p>This is the first address</p>
+         <p>This is the second address</p>
+         <p>This is the third address</p>
+         <p>This is the fourth address</p>
+         <p>This is the fifth address</p>
+        </div>
+      </div>
+      <hr />
+      
+      
+      <footer class="text-center text-lg-start" style="background-color:rgb(11, 11, 46);">
+        <!-- Grid container -->
+        <div class=" p-4">
+          <!--Grid row-->
+          <div class="row">
+            <!--Grid column-->
+            <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+              <h5 class="text-uppercase text-light">Avani</h5>
+      
+              <ul class="list-unstyled mb-0">
+                <li>
+                  <a class="text-light" href="{% url 'home' %}" >Home</a>
+                </li>
+                <li>
+                  <a class="text-light" href="{% url 'contact' %}" >Contact Us</a>
+                </li>
+              </ul>
+            </div>
+            <!--Grid column-->
+      
+            <!--Grid column-->
+            <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+              <h5 class="text-uppercase mb-0 text-light">Insurance</h5>
+      
+              <ul class="list-unstyled">
+                <li>
+                  <a class="text-light" href="#!">Britam</a>
+                </li>
+                <li>
+                  <a class="text-light" href="#!">Britam</a>
+                </li>
+                <li>
+                  <a class="text-light" href="#!">Britam</a>
+                </li>
+                <li>
+                  <a class="text-light" href="#!">Britam</a>
+                </li>
+              </ul>
+            </div>
+            <!--Grid column-->
+      
+            <!--Grid column-->
+            <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+              <h5 class="text-uppercase text-light">Specialists</h5>
+      
+              <ul class="list-unstyled mb-0">
+                <li>
+                  <a class="text-light" href="#!">Dermatologist</a>
+                </li>
+                <li>
+                  <a class="text-light" href="#!">Orthodontist</a>
+                </li>
+                <li>
+                  <a class="text-light" href="#!">Neurosurgeon</a>
+                </li>
+                
+              </ul>
+            </div>
+            <!--Grid column-->
+      
+            
+          </div>
+          <!--Grid row-->
+        </div>
+        <!-- Grid container -->
+      </footer>
+    </div>
+
+    <script src="../../static/patient/js/bootstrap.js"></script>
+  </body>
+</html>

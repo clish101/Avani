@@ -1,0 +1,312 @@
+{% load static %}
+{% load crispy_forms_tags %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link
+      href="{% static '../../static/patient/css/style.css' %}"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../../static/patient/css/bootstrap.css" />
+    <link
+      rel="stylesheet"
+      href="../../static/patient/css/fontawesome/css/all.css"
+    />
+  </head>
+  <body >
+    <div style="background-color: rgba(255,255,255,0.7);">
+      <div style="background-color:rgb(11, 11, 46);height: 100px;">
+
+        <span class="text-start display-2"
+          ><a class="text-light text-decoration-none" href="{% url 'home' %}"
+            >AVANI</a
+          ></span
+        >
+        <span class="btn-group float-end clearfix align-items-middle mt-5">
+          <a href="{% url 'home' %}" class="me-5 float-start text-decoration-none text-light">Home</a>
+        </span>
+      </div>
+
+      
+      <div
+        style="
+          background-color: #C48793;
+          height: 70%;
+          width: 60%;
+          margin: auto;
+        " class="my-3 rounded"
+      >
+        <div style="width: 50%; margin: auto" class="py-3">
+          <form method="POST">
+            {% csrf_token %}
+            {{form|crispy}}
+            <!-- <div class="row">
+              <label for="firstname" class="col text-end fw-bold me-2"
+                >Name</label
+              >
+
+              <input
+                type="text"
+                class="form-control col float-start"
+                placeholder="First name"
+              />
+            </div>
+            <br />
+            <div class="row">
+              <label for="firstname" class="col text-end fw-bold me-2"
+                >D.O.B</label
+              >
+
+              <input
+                type="date"
+                class="form-control col float-start"
+                placeholder="Date Of Birth"
+              />
+            </div>
+            <br />
+            <div class="row">
+              <label for="gender" class="col text-end fw-bold me-2">Gender</label>
+            <div class=" col float-start">
+
+              <input type="radio" id="html" name="gender" value="HTML"/>
+              <label for="male">Male</label><br />
+              <input type="radio" id="css" name="gender" value="CSS" />
+              <label for="female">Female</label><br />
+              <input
+                type="radio"
+                id="javascript"
+                na
+              />
+              <label for="javascript">Other</label>
+            </div>
+          </div>
+          <br>
+          <br>
+          <div class="row">
+            <label for="firstname" class="col text-end fw-bold me-2"
+              >Phone</label
+            >
+
+            <input
+              type="number"
+              class="form-control col float-start"
+              placeholder="Phone number"
+            />
+          </div>
+          <br>
+          <div class="row">
+            <label for="firstname" class="col text-end fw-bold me-2"
+              >Email</label
+            >
+
+            <input
+              type="email"
+              class="form-control col float-start"
+              placeholder="Email"
+            />
+          </div>
+          <br>
+          <div class="row">
+            <label for="firstname" class="col text-end fw-bold me-2"
+              >Password</label
+            >
+
+            <input
+            type="password"
+            class="form-control col float-start"
+            placeholder=""
+            />
+          </div>
+          <br>
+          <div class="row">
+            <label for="firstname" class="col text-end fw-bold me-2"
+              >Confirm Password</label
+            >
+
+            <input
+              type="password"
+              class="form-control col float-start"
+              placeholder=""
+            />
+          </div>
+          <br>
+          <div class="row">
+            <label for="firstname" class="col text-end fw-bold me-2"
+              >Address</label
+            >
+
+            <input
+              type="text"
+              class="form-control col float-start"
+              placeholder="Address"
+            />
+          </div>
+          <br>
+          <div class="row">
+            <label for="firstname" class="col text-end fw-bold me-2"
+              >Speciality</label
+            >
+
+            <input
+              type="text"
+              class="form-control col float-start"
+              placeholder="Speciality"
+            />
+          </div>
+          <br>
+          <div class="row">
+            <label for="firstname" class="col text-end fw-bold me-2"
+              >NPI no:</label
+            >
+
+            <input
+              type="text"
+              class="form-control col float-start"
+              placeholder="NPI no:"
+            />
+          </div>
+          <br>
+          <div class="row">
+            <label for="firstname" class="col text-end fw-bold me-2"
+              >Education</label
+            >
+
+            <input
+              type="text"
+              class="form-control col float-start"
+              placeholder="Education"
+            />
+          </div>
+          <br>
+          <div class="row">
+            <label for="firstname" class="col text-end fw-bold me-2"
+              >Qualifications</label
+            >
+
+            <input
+              type="text"
+              class="form-control col float-start"
+              placeholder="Qualifications"
+            />
+          </div>
+          <br>
+          <div class="row">
+            <label for="firstname" class="col text-end fw-bold me-2"
+              >Places Worked</label
+            >
+
+            <input
+              type="text"
+              class="form-control col float-start"
+              placeholder="Places Worked"
+            />
+          </div>
+          <br>
+          <div class="row">
+            <label for="firstname" class="col text-end fw-bold me-2"
+              >Consultation Fee</label
+            >
+
+            <input
+              type="text"
+              class="form-control col float-start"
+              placeholder="Consultation Fee"
+            />
+          </div>
+          <br>
+          <div class="row">
+            <label for="firstname" class="col text-end fw-bold me-2"
+              >Available Venue</label
+            >
+
+            <input
+              type="text"
+              class="form-control col float-start"
+              placeholder="Available Venue"
+            />
+          </div>
+          <br> -->
+          <div class="text-center">
+
+            <button class="btn btn-dark" type="submit">Sign Up</button>
+          </div>
+          </form>
+        </div>
+      </div>
+      
+
+      <footer class="text-center text-lg-start" style="background-color:rgb(11, 11, 46);">
+        <!-- Grid container -->
+        <div class=" p-4">
+          <!--Grid row-->
+          <div class="row">
+            <!--Grid column-->
+            <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+              <h5 class="text-uppercase text-light">Avani</h5>
+      
+              <ul class="list-unstyled mb-0">
+                <li>
+                  <a class="text-light text-decoration-none" href="{% url 'home' %}" >Home</a>
+                </li>
+                <li>
+                  <a class="text-light" href="{% url 'contact' %}" >Contact Us</a>
+                </li>
+              </ul>
+            </div>
+            <!--Grid column-->
+      
+            <!--Grid column-->
+            <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+              <h5 class="text-uppercase mb-0 text-light">Insurance</h5>
+      
+              <ul class="list-unstyled">
+                <li>
+                  <a class="text-light" href="#!">Britam</a>
+                </li>
+                <li>
+                  <a class="text-light" href="#!">Britam</a>
+                </li>
+                <li>
+                  <a class="text-light" href="#!">Britam</a>
+                </li>
+                <li>
+                  <a class="text-light" href="#!">Britam</a>
+                </li>
+              </ul>
+            </div>
+            <!--Grid column-->
+      
+            <!--Grid column-->
+            <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+              <h5 class="text-uppercase text-light">Specialists</h5>
+      
+              <ul class="list-unstyled mb-0">
+                <li>
+                  <a class="text-light" href="#!">Dermatologist</a>
+                </li>
+                <li>
+                  <a class="text-light" href="#!">Orthodontist</a>
+                </li>
+                <li>
+                  <a class="text-light" href="#!">Neurosurgeon</a>
+                </li>
+                
+              </ul>
+            </div>
+            <!--Grid column-->
+      
+            
+          </div>
+          <!--Grid row-->
+        </div>
+        <!-- Grid container -->
+      </footer>
+    </div>
+
+    <script src="../../static/patient/js/bootstrap.js"></script>
+  </body>
+</html>

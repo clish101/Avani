@@ -1,0 +1,234 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link
+      href="{% static '../../static/patient/css/style.css' %}"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../../static/patient/css/bootstrap.css" />
+    <link
+      rel="stylesheet"
+      href="../../static/patient/css/fontawesome/css/all.css"
+    />
+  </head>
+  <body style="background-image: url('../../static/patient/images/forest.jpg')">
+    <div style="background-color: rgba(255, 255, 255, 0.7); height: 700px">
+      <div class="row" style="background-color: rgb(11, 11, 46); height: 100px">
+        <span class="text-start display-2 col-md-2 float-start"
+          ><a class="text-light text-decoration-none" href="{% url 'home' %}"
+            >AVANI</a
+          ></span
+        >
+
+        <span class="float-end mt-5 col-md-10 text-end">
+          <a
+            href="{% url 'contact' %}"
+            class="me-1 ps-2 text-decoration-none text-light"
+            >Home</a
+          >
+          <a
+            href="{% url 'contact' %}"
+            class="me-1 ps-2 text-decoration-none text-light"
+            style="border-left: solid 2px white"
+            >Consultation Request</a
+          >
+          <a
+            href="{% url 'contact' %}"
+            class="me-1 ps-2 text-decoration-none text-light"
+            style="border-left: solid 2px white"
+            >Appointment Booking</a
+          >
+          <a
+            href="{% url 'contact' %}"
+            class="me-1 ps-2 text-decoration-none text-light"
+            style="border-left: solid 2px white"
+            >Appointment Feedback</a
+          >
+          <a
+            href="{% url 'contact' %}"
+            class="me-1 ps-2 text-decoration-none text-light"
+            style="border-left: solid 2px white"
+            >Notification</a
+          >
+          <a
+            href="{% url 'contact' %}"
+            class="me-1 ps-2 text-decoration-none text-light"
+            style="border-left: solid 2px white"
+            >History</a
+          >
+        </span>
+      </div>
+
+      <div style="width: 75%; margin: auto; margin-top: 20px">
+        <form action="" method="POST">
+          {% csrf_token %}
+          <div class="clearfix mx-auto w-50">
+            <div class="row">
+              <div class="input-group float-start col">
+                <input
+                  type="text"
+                  class="form-control"
+                  placeholder="&#x1f50d; Specialist"
+                  aria-label="Specialist"
+                  name="s"
+                  aria-describedby="addon-wrapping"
+                />
+              </div>
+
+              <div class="input-group float-end col">
+                <input
+                  type="text"
+                  class="form-control"
+                  placeholder="&#x1f50d; Insurance"
+                  aria-label="Insurance"
+                  name="i"
+                  aria-describedby="addon-wrapping"
+                />
+              </div>
+              <div class="input-group float-end col">
+                <button type="submit" class="btn btn-primary">
+                  <i class="fas fa-search"></i> Search
+                </button>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+      
+      {% if messages %} {% for message in messages %}
+      <div class="alert alert-{{message.tags}}">{{message}}</div>
+      {% endfor %} {% endif %}
+      <h5 style="margin-left: 200px">
+        Click on the <span class="fw-bold">CHECKBOX</span> to make the
+        appointment second request
+      </h5>
+      <div class="row container my-3">
+        <div class="col-md-6 text-center fw-bold">Doctor</div>
+
+        <div class="col-md-3 fw-bold">Consultation Fee</div>
+        <div class="col-md-3 fw-bold">Appointment Date</div>
+      </div>
+      <div class="my-3">
+        {% for doctor in doctors %}
+        <form action="{% url 'upsend' %}" method="POST">
+          {% csrf_token %}
+          <div class="row container">
+            <div class="col-md-6">
+              <div class="row">
+                <div class="form-check float-end col" style="margin-left: 250px;" >
+                  <input class="form-check-input" type="checkbox" name="checking" value="{{doctor.name}}" id="flexCheckDefault">                  
+                  <figure class="figure col d-inline float-start">
+                    <img
+                    src="../../static/patient/images/nurse.jpg"
+                    class="figure-img img-fluid rounded float-end"
+                    alt="Nurse"
+                    style="height: 100px; width: 80px"
+                    />
+                  </figure>
+                  <div class=" float-start mt-5 ms-2">
+                    <p class="float-start">{{doctor.name}}</p>
+                  </div>
+                </div>
+                
+              </div>
+            </div>
+
+            <div class="col-md-3 mt-5">{{doctor.consultation_fee}}</div>
+            <div class="col-md-3 float-end mt-5" >
+              <div class="input-group " >
+                <input
+                class="form-control form-control-sm"
+                type="date"
+                name="dating"
+                value="{{app_date|date:'d/m/Y'}}"
+                aria-label="Recipient's "
+                aria-describedby="my-addon"
+                />
+              </div>
+            </div>
+          </div>
+          {% endfor %}
+          <div class="text-center mt-5">
+            <button type="submit" class="btn btn-primary" name="upload"
+            >Upload and Send</button
+            >
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <footer
+      class="text-center text-lg-start w-100"
+      style="background-color: rgb(11, 11, 46)"
+    >
+      <!-- Grid container -->
+      <div class="p-4">
+        <!--Grid row-->
+        <div class="row">
+          <!--Grid column-->
+          <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+            <h5 class="text-uppercase text-light">Avani</h5>
+
+            <ul class="list-unstyled mb-0">
+              <li>
+                <a class="text-light" href="{% url 'home' %}">Home</a>
+              </li>
+              <li>
+                <a class="text-light" href="{% url 'contact' %}">Contact Us</a>
+              </li>
+            </ul>
+          </div>
+          <!--Grid column-->
+
+          <!--Grid column-->
+          <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+            <h5 class="text-uppercase mb-0 text-light">Insurance</h5>
+
+            <ul class="list-unstyled">
+              <li>
+                <a class="text-light" href="#!">Britam</a>
+              </li>
+              <li>
+                <a class="text-light" href="#!">Britam</a>
+              </li>
+              <li>
+                <a class="text-light" href="#!">Britam</a>
+              </li>
+              <li>
+                <a class="text-light" href="#!">Britam</a>
+              </li>
+            </ul>
+          </div>
+          <!--Grid column-->
+
+          <!--Grid column-->
+          <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+            <h5 class="text-uppercase text-light">Specialists</h5>
+
+            <ul class="list-unstyled mb-0">
+              <li>
+                <a class="text-light" href="#!">Dermatologist</a>
+              </li>
+              <li>
+                <a class="text-light" href="#!">Orthodontist</a>
+              </li>
+              <li>
+                <a class="text-light" href="#!">Neurosurgeon</a>
+              </li>
+            </ul>
+          </div>
+          <!--Grid column-->
+        </div>
+        <!--Grid row-->
+      </div>
+      <!-- Grid container -->
+    </footer>
+
+    <script src="../../static/patient/js/bootstrap.js"></script>
+  </body>
+</html>

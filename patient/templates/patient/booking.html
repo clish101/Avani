@@ -1,0 +1,157 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Document</title>
+  <link href="{% static '../../static/patient/css/style.css' %}" rel="stylesheet" />
+  <link rel="stylesheet" href="../../static/patient/css/bootstrap.css" />
+  <link rel="stylesheet" href="../../static/patient/css/fontawesome/css/all.css" />
+</head>
+
+<body style="background-image:url('../../static/patient/images/forest.jpg')">
+  <div style="background-color: rgba(255,255,255,0.7);height: 500px;">
+    <div class="row" style="background-color:rgb(11, 11, 46);height: 100px;">
+      <span class="text-start display-2 col-md-2 float-start"><a class="text-light text-decoration-none"
+          href="{% url 'home' %}">AVANI</a></span>
+
+      <span class="float-end mt-5 col-md-10 text-end">
+        <a href="{% url 'contact' %}" class="me-1 ps-2 text-decoration-none text-light">Home</a>
+        <a href="{% url 'contact' %}" class="me-1 ps-2 text-decoration-none text-light"
+          style="border-left: solid 2px white">Consultation Request</a>
+        <a href="{% url 'contact' %}" class="me-1 ps-2 text-decoration-none text-light"
+          style="border-left: solid 2px white">Appointment Booking</a>
+        <a href="{% url 'contact' %}" class="me-1 ps-2 text-decoration-none text-light"
+          style="border-left: solid 2px white">Appointment Feedback</a>
+        <a href="{% url 'contact' %}" class="me-1 ps-2 text-decoration-none text-light"
+          style="border-left: solid 2px white">Notification</a>
+        <a href="{% url 'contact' %}" class="me-1 ps-2 text-decoration-none text-light"
+          style="border-left: solid 2px white">History</a>
+      </span>
+    </div>
+
+
+
+
+
+
+    <div class="my-3">
+    
+
+      {% for do in doctor %}
+      <form action="{% url 'appmake' do.user.id %}" method="GET">
+        
+        <div class="row container">
+          <div class="col-md-6 ">
+            <div class="row">
+              <div class="col">
+
+
+                <figure class="figure col d-inline float-end">
+                  <img src="../../static/patient/images/nurse.jpg" class="figure-img img-fluid rounded float-end"
+                    alt="Nurse" style="height: 100px;width: 80px;" />
+                </figure>
+              </div>
+              <div class="col float-start">
+                <p class="float-start">
+                  {{do.name}}
+                </p>
+              </div>
+              <div class="col">
+
+                <input class="form-control form-control-sm" type="date" name="app_date" value="{{app_date|date:'d/m/Y'}}"
+                 aria-label="Recipient's " aria-describedby="my-addon">
+              </div>
+            </div>
+          </div>
+          <div class="bg-light" style="height: 100px; width:500px">
+            <p>Confirm you are willing to share your details with the doctor</p>
+            <div class="text-center">
+              
+              <button type="submit" class="btn btn-primary">Book</button>
+              <a href="{% url 'regularappointments' %}" class="btn btn-primary">Decline</a>
+
+            </div>
+          </div>
+
+
+      </form>
+      {% endfor %}
+    </div>
+
+
+    <footer class="text-center text-lg-start fixed-bottom" style="background-color:rgb(11, 11, 46);">
+      <!-- Grid container -->
+      <div class=" p-4">
+        <!--Grid row-->
+        <div class="row">
+          <!--Grid column-->
+          <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+            <h5 class="text-uppercase text-light">Avani</h5>
+
+            <ul class="list-unstyled mb-0">
+              <li>
+                <a class="text-light" href="{% url 'home' %}">Home</a>
+              </li>
+              <li>
+                <a class="text-light" href="{% url 'contact' %}">Contact Us</a>
+              </li>
+            </ul>
+          </div>
+          <!--Grid column-->
+
+          <!--Grid column-->
+          <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+            <h5 class="text-uppercase mb-0 text-light">Insurance</h5>
+
+            <ul class="list-unstyled">
+              <li>
+                <a class="text-light" href="#!">Britam</a>
+              </li>
+              <li>
+                <a class="text-light" href="#!">Britam</a>
+              </li>
+              <li>
+                <a class="text-light" href="#!">Britam</a>
+              </li>
+              <li>
+                <a class="text-light" href="#!">Britam</a>
+              </li>
+            </ul>
+          </div>
+          <!--Grid column-->
+
+          <!--Grid column-->
+          <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+            <h5 class="text-uppercase text-light">Specialists</h5>
+
+            <ul class="list-unstyled mb-0">
+              <li>
+                <a class="text-light" href="#!">Dermatologist</a>
+              </li>
+              <li>
+                <a class="text-light" href="#!">Orthodontist</a>
+              </li>
+              <li>
+                <a class="text-light" href="#!">Neurosurgeon</a>
+              </li>
+
+            </ul>
+          </div>
+          <!--Grid column-->
+
+
+        </div>
+        <!--Grid row-->
+      </div>
+      <!-- Grid container -->
+    </footer>
+  </div>
+
+  <script src="../../static/patient/js/bootstrap.js"></script>
+</body>
+
+</html>
